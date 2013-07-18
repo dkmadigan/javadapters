@@ -13,6 +13,19 @@ import com.javadapters.adapters.StringAdapters;
 public class AdapterFactory {
 
    /**
+    * Add an adapter type to the current supported set of adapters.
+    * If an adapter for the specified types already exists then will overwrite
+    * it.
+    * @param fromType The type to convert from
+    * @param toType The type to convert to
+    * @param adapter The adapter to add
+    */
+   public static <F,T> void addAdapter(Class<F> fromType, Class<T> toType,
+         Adapter<F,T> adapter) {
+      sAdapters.put(new ClassPair<F,T>(fromType, toType), adapter);
+   }
+
+   /**
     * Gets the adapter to convert from fromType to toType
     * @param fromType The type to convert from
     * @param toType The type to convert to
